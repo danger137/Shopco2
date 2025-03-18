@@ -1,7 +1,8 @@
 import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
 
-const CONTENTFUL_SPACE_ID = "jbjl4hxl3bwk";
-const CONTENTFUL_ACCESS_TOKEN = "qwBsGEmCPxi74ujf685F62EOCjJFlJjyFU0MDQNpk5E";
+const CONTENTFUL_SPACE_ID = process.env.CONTENTFUL_SPACE_ID;
+const CONTENTFUL_ACCESS_TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN;
+
 
 if (!CONTENTFUL_SPACE_ID) {
   console.error("❌ Contentful Space ID is missing!");
