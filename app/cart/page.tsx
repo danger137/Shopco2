@@ -41,7 +41,7 @@ export default function CartPage() {
   }, []);
 
   const handleCheckout = async () => {
-    if (!cart.items.length) return;
+    if (!cart?.items?.length) return;
     const lineItems = cart.items.map((item) => ({
       variantId: item.variantId,
       quantity: item.quantity,
@@ -101,7 +101,7 @@ export default function CartPage() {
                
                 <Button
                   type="button"
-                  className="text-sm md:text-base font-medium bg-black rounded-full w-full py-4 h-[54px] md:h-[60px] group"
+                  className="text-sm md:text-base text-white font-medium bg-black rounded-full w-full py-4 h-[54px] md:h-[60px] group"
                   onClick={handleCheckout}
                   disabled={checkoutLoading}
                 >

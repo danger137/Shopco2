@@ -1,6 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setSizeSelection } from "@/lib/features/products/productsSlice"; // Ensure correct import path
+import { RootState } from "@/lib/store"; // Ensure correct import path
 import {
   Accordion,
   AccordionContent,
@@ -10,7 +13,24 @@ import {
 import { cn } from "@/lib/utils";
 
 const SizeSection = () => {
-  const [selected, setSelected] = useState<string>("Large");
+  const dispatch = useDispatch();
+  const selectedSize = useSelector((state: RootState) => state.products.sizeSelection);
+
+  const sizes = [
+    "XX-Small",
+    "X-Small",
+    "Small",
+    "Medium",
+    "Large",
+    "X-Large",
+    "XX-Large",
+    "3X-Large",
+    "4X-Large",
+  ];
+
+  const handleSizeSelect = (size: string) => {
+    dispatch(setSizeSelection(size)); // Redux store update
+  };
 
   return (
     <Accordion type="single" collapsible defaultValue="filter-size">
@@ -20,25 +40,15 @@ const SizeSection = () => {
         </AccordionTrigger>
         <AccordionContent className="pt-4 pb-0">
           <div className="flex items-center flex-wrap">
-            {[
-              "XX-Small",
-              "X-Small",
-              "Small",
-              "Medium",
-              "Large",
-              "X-Large",
-              "XX-Large",
-              "3X-Large",
-              "4X-Large",
-            ].map((size, index) => (
+            {sizes.map((size, index) => (
               <button
                 key={index}
                 type="button"
                 className={cn([
-                  "bg-[#F0F0F0] m-1 flex items-center justify-center px-5 py-2.5 text-sm rounded-full max-h-[39px]",
-                  selected === size && "bg-black font-medium text-white",
+                  "m-1 bg-black text-white flex items-center justify-center px-5 py-2.5 text-sm rounded-full max-h-[39px]",
+                  selectedSize === size && "bg-black font-medium text-white",
                 ])}
-                onClick={() => setSelected(size)}
+                onClick={() => handleSizeSelect(size)}
               >
                 {size}
               </button>

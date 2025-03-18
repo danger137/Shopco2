@@ -1,7 +1,7 @@
 import React from "react";
 
 export type MenuItem = {
-  id: number;
+  id: string; // Changed from number to string
   type: "MenuItem" | "MenuList";
   label: string;
   url?: string;
@@ -12,8 +12,14 @@ export type MenuItem = {
     | [];
 };
 
+
+
 export type MenuListData = (Omit<MenuItem, "children" | "type"> & {
   description?: string | React.ReactNode;
 })[];
 
 export type NavMenu = MenuItem[];
+
+
+
+

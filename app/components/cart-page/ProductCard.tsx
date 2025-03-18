@@ -49,7 +49,7 @@ const ProductCard = ({ data }: ProductCardProps) => {
           <Button
             variant="ghost"
             size="icon"
-            className="h-5 w-5 md:h-9 md:w-9"
+            className="h-5 w-5  md:h-9 md:w-9"
             onClick={() =>
               dispatch(
                 remove({
@@ -131,7 +131,7 @@ const ProductCard = ({ data }: ProductCardProps) => {
                   )
             }
             isZeroDelete
-            className="px-5 py-3 max-h-8 md:max-h-10 min-w-[105px] max-w-[105px] sm:max-w-32"
+            className="px-5 py-3 text-white max-h-8 md:max-h-10 min-w-[105px] max-w-[105px] sm:max-w-32"
           />
         </div>
       </div>

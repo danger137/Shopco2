@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { client } from "../../../lib/Shopify";
@@ -6,34 +7,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { gql } from "@apollo/client";
 
-// Define TypeScript interfaces
-interface Product {
-  id: string;
-  title: string;
-  handle: string;
-  description: string;
-  images: {
-    edges: { node: { url: string; altText?: string } }[];
-  };
-  variants: {
-    edges: { node: { price: { amount: string; currencyCode: string } } }[];
-  };
-}
-
-interface Collection {
-  id: string;
-  title: string;
-  products: {
-    edges: { node: Product }[];
-  };
-}
-
-export const GET_PRODUCTS_BY_COLLECTION = gql`
+// Define GraphQL query
+const GET_PRODUCTS_BY_COLLECTION = gql`
   query GetProductsByCollection($handle: String!) {
     collectionByHandle(handle: $handle) {
       id
       title
-      products(first: 10) {
+      products(first: 25) {
         edges {
           node {
             id
@@ -65,6 +45,28 @@ export const GET_PRODUCTS_BY_COLLECTION = gql`
   }
 `;
 
+// Define TypeScript interfaces
+interface Product {
+  id: string;
+  title: string;
+  handle: string;
+  description: string;
+  images: {
+    edges: { node: { url: string; altText?: string } }[];
+  };
+  variants: {
+    edges: { node: { price: { amount: string; currencyCode: string } } }[];
+  };
+}
+
+interface Collection {
+  id: string;
+  title: string;
+  products: {
+    edges: { node: Product }[];
+  };
+}
+
 export default function CollectionPage() {
   const params = useParams(); 
   const [collection, setCollection] = useState<Collection | null>(null);
@@ -76,14 +78,13 @@ export default function CollectionPage() {
       if (!params?.slug) return;
 
       try {
-        const { data } = await client.query({
+        const { data } = await client.query<{ collectionByHandle: Collection }>({
           query: GET_PRODUCTS_BY_COLLECTION,
           variables: { handle: params.slug },
         });
 
-        const fetchedCollection = data?.collectionByHandle;
-        if (fetchedCollection) {
-          setCollection(fetchedCollection);
+        if (data?.collectionByHandle) {
+          setCollection(data.collectionByHandle);
         }
       } catch (error) {
         console.error("Error fetching collection:", error);
@@ -98,13 +99,11 @@ export default function CollectionPage() {
   if (loading) return <p className="text-center p-4">Loading...</p>;
   if (!collection?.products?.edges.length) return <p className="text-center p-4">No products found.</p>;
 
-  // Get the highest product price for setting max range value
   const prices = collection.products.edges.map(
     (p) => parseFloat(p.node.variants.edges[0]?.node.price.amount) || 0
   );
   const highestPrice = Math.max(...prices, 1000);
 
-  // Filter products based on max price selected
   const filteredProducts = collection.products.edges.filter(({ node: product }) => {
     const price = parseFloat(product.variants.edges[0]?.node.price.amount) || 0;
     return price <= maxPrice;
@@ -144,8 +143,7 @@ export default function CollectionPage() {
                 )}
                 <h2 className="text-lg font-semibold mt-2">{product.title}</h2>
                 <p className="text-gray-500">
-                  {product.variants.edges[0]?.node.price.amount}{" "}
-                  {product.variants.edges[0]?.node.price.currencyCode}
+                  {product.variants.edges[0]?.node.price.amount} {product.variants.edges[0]?.node.price.currencyCode}
                 </p>
               </div>
             </Link>

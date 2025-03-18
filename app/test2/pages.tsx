@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link"; // <-- Next.js ka Link import karo
 import { getProducts } from "../../lib/Shopify";
 
-export default function Test() {
+export default function Test2() {
   const [products, setProducts] = useState<any[]>([]);
 
   useEffect(() => {
@@ -17,9 +17,9 @@ export default function Test() {
 
   return (
     <div className="container mx-auto p-4">
-    <h1 className="text-4xl font-bold text-black mt-7 mb-10 text-center">New Arrival</h1>
+    <h1 className="text-4xl font-bold text-black mt-7 mb-10 text-center">Top Selling</h1>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      {products.slice(0, 3).map((product) => (
+      {products.slice(3, 6).map((product) => (
         <div key={product.id}>
           <div className="bg-[#F0EEED] rounded-[13px] lg:rounded-[20px] w-full lg:max-w-[295px] aspect-square mb-2.5 xl:mb-4 overflow-hidden">
             <Link href={`/products/${product.handle}`}>
@@ -79,23 +79,17 @@ export default function Test() {
                 </span>
               )
             )}
-       
           </div>
-
-    
-
         </div>
       ))}
-        
     </div>
     <div className="flex mt-10 justify-center">
-  <Link href="/collections/new-arrival">
+  <Link href="/collections/top-selling">
     <p className="text-black text-2xl border py-2 rounded-3xl px-12 transition duration-300 hover:bg-blue-500 hover:text-white cursor-pointer">
       View All
     </p>
   </Link>
 </div>
-
   </div>
   );
 }

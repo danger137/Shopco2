@@ -16,19 +16,19 @@ type DressStyle = {
 const dressStylesData: DressStyle[] = [
   {
     title: "Casual",
-    slug: "/shop?style=casual",
+    slug: "/collections/casual",
   },
   {
     title: "Formal",
-    slug: "/shop?style=formal",
+    slug: "/collections/formal",
   },
   {
     title: "Party",
-    slug: "/shop?style=party",
+    slug: "/collections/party",
   },
   {
     title: "Gym",
-    slug: "/shop?style=gym",
+    slug: "/collections/gym",
   },
 ];
 
