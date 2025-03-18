@@ -13,7 +13,7 @@ import {
   NavigationMenuList,
 } from "../../ui/navigation-menu";
 
-// GraphQL Queries
+
 const GET_COLLECTIONS = gql`
   query GetCollections {
     collections(first: 10) {

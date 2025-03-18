@@ -2,8 +2,8 @@
 
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setColorSelection } from "@/lib/features/products/productsSlice"; // Redux action import
-import { RootState } from "@/lib/store"; // RootState import
+import { setColorSelection } from "@/lib/features/products/productsSlice"; 
+import { RootState } from "@/lib/store"; 
 import {
   Accordion,
   AccordionContent,

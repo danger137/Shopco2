@@ -29,7 +29,7 @@ const SizeSection = () => {
   ];
 
   const handleSizeSelect = (size: string) => {
-    dispatch(setSizeSelection(size)); // Redux store update
+    dispatch(setSizeSelection(size)); 
   };
 
   return (

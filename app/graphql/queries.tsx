@@ -1,16 +1,6 @@
 import { gql } from "@apollo/client";
 
-// export const GET_FEATURES = gql`
-//   query GetFeatures {
-//     featuresCollection {
-//       items {
-//         title
-//         description
-//         emoji
-//       }
-//     }
-//   }
-// `;
+
 
 
 export const GET_FEATURES = gql`

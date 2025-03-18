@@ -44,7 +44,7 @@ const Footer = () => {
                 SHOP.CO
               </h1>
 
-              {/* Display GraphQL Description */}
+            
               {loading ? (
                 <p className="text-black/60 text-sm mb-9">Loading...</p>
               ) : error ? (
@@ -76,7 +76,7 @@ const Footer = () => {
 
           <hr className="h-[1px] border-t-black/10 my-6" />
           <div className="flex flex-col sm:flex-row justify-center sm:justify-between items-center">
-            {/* Display Footer Description 2 from GraphQL */}
+       
             <p className="text-sm text-center sm:text-left text-black/60 mb-4 sm:mb-0">
               {loading ? (
                 "Loading..."

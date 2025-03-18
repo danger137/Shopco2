@@ -12,7 +12,7 @@ type VariantType = {
     amount: number;
     currencyCode: string;
   };
-  // Add any other properties your variant may have
+
 };
 
 

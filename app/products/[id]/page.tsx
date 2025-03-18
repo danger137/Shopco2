@@ -16,11 +16,11 @@ import {
 import AddToCardSection from "../../components/product-page/Header/AddToCardSection";
 
 interface ProductPageProps {
-  params: Promise<{ id: string }>; // 👈 params ko promise banaya
+  params: Promise<{ id: string }>; 
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const resolvedParams = await params; // 👈 params ko await kiya
+  const resolvedParams = await params; 
   const { id } = resolvedParams;
 
   if (!id) {

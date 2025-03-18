@@ -1,7 +1,7 @@
 'use client';
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import Link from "next/link"; // <-- Next.js ka Link import karo
+import Link from "next/link"; 
 import { getProducts } from "../../lib/Shopify";
 
 export default function Test2() {

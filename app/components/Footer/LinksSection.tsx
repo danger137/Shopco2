@@ -24,10 +24,10 @@ const LinksSection: React.FC = () => {
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  // Extract and transform tags to uppercase
+
   const tags: string[] = data?.tagsCollection?.items[0]?.tags.map((tag) => tag.toUpperCase()) || [];
 
-  // Group tags into sections dynamically
+
   const groupedTags: string[][] = tags.reduce<string[][]>((acc, tag, index) => {
     const sectionIndex = Math.floor(index / 5); // Grouping every 5 items
     acc[sectionIndex] = acc[sectionIndex] || [];

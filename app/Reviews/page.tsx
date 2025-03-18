@@ -18,7 +18,7 @@ import ReviewCard from "../components/common/ReviewCard";
 import { useQuery } from "@apollo/client";
 import { GET_Reviews } from "../graphql/queries";
 
-// Define Review type
+
 type Review = {
   id: number;
   user: string;
@@ -32,10 +32,10 @@ const Reviews = () => {
   const [current, setCurrent] = React.useState(0);
   const [count, setCount] = React.useState(0);
   const isDesktop = useMediaQuery("(min-width: 1024px)");
-  const isClient = useIsClient(); // This must NOT be used conditionally
-  const { loading, error, data } = useQuery(GET_Reviews); // Always at the top level
+  const isClient = useIsClient(); 
+  const { loading, error, data } = useQuery(GET_Reviews); 
 
-  // Transform API response to match Review type
+ 
   const reviewsData: Review[] =
     data?.reviewsCollection?.items?.map((review: any) => ({
       id: review.id,
@@ -45,7 +45,7 @@ const Reviews = () => {
       date: review.date || "Unknown Date",
     })) || [];
 
-  // Effect for carousel updates
+ 
   React.useEffect(() => {
     if (!api) return;
     setCount(api.scrollSnapList().length);
@@ -56,7 +56,7 @@ const Reviews = () => {
     });
   }, [api]);
 
-  // Handle loading or error states
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 

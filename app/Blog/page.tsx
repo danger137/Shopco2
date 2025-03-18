@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_BLOG } from "../graphql/queries";
 
-// Define TypeScript interface for blog data
+
 interface BlogItem {
   title: string;
   description: string;
@@ -35,7 +35,7 @@ export default function Blog() {
             key={index}
             className="relative group bg-white rounded-xl shadow-md overflow-hidden transition-transform transform hover:scale-105"
           >
-            {/* Image Section */}
+     
             {blog.image?.url && (
               <div className="h-56 w-full overflow-hidden">
                 <img
@@ -46,16 +46,16 @@ export default function Blog() {
               </div>
             )}
 
-            {/* Content Section */}
+    
             <div className="p-6">
               <h2 className="text-2xl font-semibold text-gray-900 mb-3">{blog.title}</h2>
 
-              {/* Show description only when "Read More" is clicked */}
+      
               {expandedIndex === index && (
                 <p className="text-gray-600 text-sm mb-4">{blog.description}</p>
               )}
 
-              {/* Read More Button */}
+          
               <button
                 onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
                 className="inline-block text-white bg-black px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition-all"
